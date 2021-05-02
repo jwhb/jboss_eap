@@ -47,7 +47,7 @@
 - name: Set JBoss EAP Service Directories Facts
   set_fact:
     jboss_eap_home: "{{ jboss_eap_library_dest }}/jboss-eap-{{jboss_eap_base_version}}"
-    jboss_eap_service_conf_dir: "/etc/{{ (jboss_eap_base_version | version_compare('7.0','<')) | ternary(jboss_eap_user,'default')}}"
+    jboss_eap_service_conf_dir: "/etc/{{ (jboss_eap_base_version is version('7.0','<')) | ternary(jboss_eap_user,'default')}}"
     jboss_eap_service_log_dir: "/var/log/{{ jboss_eap_user }}"
     jboss_eap_service_data_dir: "/var/run/{{ jboss_eap_user }}"
   tags:
@@ -55,10 +55,10 @@
 
 - name: Set JBoss EAP Service Files Facts
   set_fact:
-    jboss_eap_service_conf_file: "{{ jboss_eap_service_conf_dir }}/{{ (jboss_eap_base_version | version_compare('7.0','<')) | ternary('jboss-as.conf','jboss-eap.conf')}}"
+    jboss_eap_service_conf_file: "{{ jboss_eap_service_conf_dir }}/{{ (jboss_eap_base_version is version('7.0','<')) | ternary('jboss-as.conf','jboss-eap.conf')}}"
     jboss_eap_bin_dir: "{{ jboss_eap_home }}/bin"
     jboss_eap_runtime_conf_file: "{{ jboss_eap_home }}/bin/standalone.conf"
-    jboss_eap_service_file: "{{ (jboss_eap_base_version | version_compare('7.0','<')) | ternary('jboss-as-'+jboss_eap_mode+'.sh','jboss-eap-rhel.sh')}}"
+    jboss_eap_service_file: "{{ (jboss_eap_base_version is version('7.0','<')) | ternary('jboss-as-'+jboss_eap_mode+'.sh','jboss-eap-rhel.sh')}}"
   tags:
     - jboss_eap
 
@@ -68,7 +68,7 @@
 - name: Set JBoss EAP Service Name EL 6
   set_fact:
     jboss_eap_service_name: "{{jboss_eap_service_file}}"
-  when: (ansible_distribution_major_version | version_compare('6','<='))
+  when: (ansible_distribution_major_version is version('6','<='))
   tags:
     - jboss_eap
 
@@ -78,7 +78,7 @@
 - name: Set JBoss EAP Service Name EL 7
   set_fact:
     jboss_eap_service_name: "{{jboss_eap_service_file | splitext | first }}"
-  when: (ansible_distribution_major_version | version_compare('7','>='))
+  when: (ansible_distribution_major_version is version('7','>='))
   tags:
     - jboss_eap
 
