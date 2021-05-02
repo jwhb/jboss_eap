@@ -234,7 +234,7 @@
 # Patches can be applied while EAP is running
 - name: Apply JBoss EAP Patch
   become_user: "{{ jboss_eap_user }}"
-  command: "{{ jboss_eap_home }}/bin/jboss-cli.sh 'patch apply {{ jboss_eap_patch_dest }} --verbose'"
+  command: "{{ jboss_eap_home }}/bin/jboss-cli.sh 'patch apply {{ jboss_eap_patch_dest }}'"
   notify:
     - Restart jboss-as Service
     - Verify jboss-as is running
