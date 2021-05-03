@@ -93,7 +93,7 @@
 - name: Check Existence of Libraries
   become: true
   stat:
-    path: "{{ jboss_eap_library_dest + '/jboss-eap-6.4/version.txt'}}"
+    path: "{{ jboss_eap_home }}/version.txt"
   register: jboss_eap_exists
   tags:
     - jboss_eap
