@@ -223,7 +223,7 @@
   unarchive:
     src: "{{ jboss_eap_artifact_dl_dest }}"
     dest: "{{ jboss_eap_library_dest }}"
-    creates: "jboss-eap-{{ jboss_eap_base_version }}"
+    creates: "{{ jboss_home }}"
     copy: no
     owner: "{{ jboss_eap_user }}"
     group: "{{ jboss_eap_group }}"
