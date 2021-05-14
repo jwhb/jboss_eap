@@ -1,4 +1,6 @@
 ---
+jboss_eap_library_dest: "/opt/{{ jboss_eap_user }}"
+
 jboss_eap_artifact_source: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=37393
 jboss_eap_patch_artifact_source: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=43071
 jboss_eap_artifact_name: jboss-eap-6.4.0.zip  #jboss-eap-7.0.0.Beta.zip
